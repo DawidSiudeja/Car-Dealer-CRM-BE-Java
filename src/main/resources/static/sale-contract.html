@@ -1,0 +1,129 @@
+<style>
+    body {
+        font-family: Helvatica;
+        font-size: 13px;
+    }
+    .title {
+        text-align: center;
+        font-size: 22px;
+        font-weight: bold;
+        width:100%;
+    }
+    .subtitle {
+        margin-bottom:20px;
+        width:100%;
+        text-align: center;
+        font-size: 18px;
+    }
+    .data-text,
+    .signatures {
+        display: flex;
+        justify-content: space-between;
+        width: 100%;
+        margin-top: 30px;
+    }
+    .signatures .sign {
+        text-align:center;
+        width:50%;
+    }
+    .seller {
+        width: 50%;
+    }
+    .buyer {
+        width: 50%;
+    }
+    .number {
+        width: 100%;
+        text-align:center;
+        font-weight:bold;
+    }
+    .box {
+        width: 100%;
+        border: 1px dashed #000;
+        height: 100px;
+    }
+    .text {
+        margin-bottom: 15px;
+    }
+</style>
+<div class="title">UMOWA KUPNA / SPRZEDAŻY SAMOCHODU</div>
+<div class="subtitle">Zawarta w dniu ......................... w ......................... pomiędzy:</div>
+<div class="data-text">
+    <div class="seller">
+        Nazwa: %DEALER_NAME%<br>
+        NIP: %DEALER_NIP%<br>
+        Adres: %DEALER_ADDRESS%<br>
+        zwanym dalej SPRZEDAWCĄ (KOMISANTEM)
+    </div>
+    <div class="buyer">
+        Imię i nazwisko: <br>
+        PESEL: <br>
+        Adres: <br>
+        zwanym dalej KUPUJĄCYM
+    </div>
+</div>
+
+<div class="number">§ 1.</div>
+<div class="text">
+    <p>1. Sprzedawca oświadcza, że przedmiotem sprzedaży jest samochód osobowy %CAR_BRAND% %CAR_MODEL%,
+        rocznik %CAR_YEAR%, numer nadwozia (VIN) %CAR_VIN%, przebieg %CAR_MILEAGE% km,
+        który stanowi przedmiot umowy komisu zawartej pomiędzy Sprzedawcą, a Kupującym.</p>
+    <p>
+        2. Sprzedawca oświadcza, że Samochód jest wolny od wad prawnych, w tym wszelkich praw osób trzecich oraz że
+        spełnia przesłanki dopuszczenia go do ruchu drogowego. Ubezpieczenie OC jest opłacone i ważne do:
+    </p>
+</div>
+
+<div class="number">§ 2.</div>
+<div class="text">
+    <p>1. Kupujący oświadcza, że widział samochód, a także zapoznał się z jego stanem technicznym.</p>
+    <p>
+        2. Sprzedawca przekazał informacje o stanie technicznym Samochodu w ogłoszeniu o sprzedaży, a także informuje
+        o następujących właściwościach Samochodu:
+    </p>
+    <div class="box"></div>
+</div>
+
+
+<div class="number">§ 3.</div>
+<div class="text">
+    <p>1. Sprzedawca sprzedaje, a Kupujący kupuje Samochód za cenę %CAR_PRICE% <br>
+        słownie: %CAR_PRICE_WORDS% złotych.</p>
+    <p>
+        2. Sprzedawca niniejszym kwituje odbiór ww. kwoty, która w momencie podpisania umowy zostaje mu przekazana.
+    </p>
+    <p>
+        3. Wydanie Samochodu nastąpi niezwłocznie po podpisaniu niniejszej umowy.
+    </p>
+    <p>
+        4. Wraz z wydaniem Samochodu Sprzedawca przekaże Kupującemu wszelkie posiadane przez niego rzeczy służące
+        do korzystania z Samochodu (w tym ____ kluczyk/i), a także dowód rejestracyjny i dokumenty niezbędne do
+        rejestracji.
+    </p>
+    <p>
+        5. Strony oświadczają, iż są świadome odpowiedzialności karnej i karnoskarbowej, w przypadku wskazania w § 3 ust.
+        1 umowy, kwoty innej niż faktycznie zapłacona tytułem ceny Samochodu.
+    </p>
+</div>
+
+
+<div class="number">§ 4.</div>
+<div class="text">
+    <p>1. W sprawach nieuregulowanych zastosowanie znajdą przepisy Kodeksu cywilnego</p>
+    <p>2. W przypadku sprzeczności postanowień niniejszej umowy z innymi dokumentami dotyczącymi sprzedaży Samochodu, pierwszeństwo w ustalaniu treści stosunku prawnego ma niniejsza umowa.</p>
+    <p>3. Spory wynikłe na tle niniejszej umowy rozpatrywać będzie sąd właściwy dla miejsca zamieszkania Kupującego.</p>
+</div>
+
+<p>Umowę sporządzono w dwóch równobrzmiących egzemplarzach, umowę odczytano, zgodnie przyjęto i podpisano.</p>
+
+<div class="signatures">
+    <div class="sign">
+        __________________<br>
+        SPRZEDAJĄCY
+    </div>
+    <div class="sign">
+        __________________<br>
+        KUPUJĄCY
+    </div>
+</div>
+
