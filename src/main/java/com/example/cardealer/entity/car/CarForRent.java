@@ -6,6 +6,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import java.time.LocalDate;
+import java.util.List;
 
 @Table(name = "car_for_rent")
 @Entity
@@ -41,9 +42,10 @@ public class CarForRent extends Car {
             float pricePerHour,
             float pricePerDay,
             float pricePerWeek,
-            float pricePerMonth
+            float pricePerMonth,
+            List<String> imageFile
     ) {
-        super(uuid, brand, model, car_year, color, engine, mileage, type, gearbox, doors, seats, desc, createAt, seller);
+        super(uuid, brand, model, car_year, color, engine, mileage, type, gearbox, doors, seats, desc, createAt, seller, imageFile);
         this.pricePerHour = pricePerHour;
         this.pricePerDay = pricePerDay;
         this.pricePerWeek = pricePerWeek;

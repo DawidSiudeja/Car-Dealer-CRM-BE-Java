@@ -4,6 +4,8 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import java.util.List;
+
 @Getter
 @Setter
 @NoArgsConstructor
@@ -24,5 +26,6 @@ public class CarForRentDTO {
     private float pricePerDay;
     private float pricePerWeek;
     private float pricePerMonth;
+    private List<String> imageFile;
 }
 

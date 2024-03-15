@@ -16,11 +16,9 @@ public interface UserRepository extends JpaRepository<User, Long> {
 
     @Query(nativeQuery = true, value = "SELECT * FROM users where login=?1 and islock=false and isenabled=true and role='ADMIN'")
     Optional<User> findUserByLoginAndLockAndEnabledAndIsAdmin(String login);
-
     Optional<User> findUserByEmail(String email);
 
     Optional<User> findUserByUuid(String uuid);
-
     Optional<User> findUserById(Integer id);
 }
 

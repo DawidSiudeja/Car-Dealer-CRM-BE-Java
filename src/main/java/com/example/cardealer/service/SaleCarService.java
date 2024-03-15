@@ -3,6 +3,8 @@ package com.example.cardealer.service;
 import com.example.cardealer.entity.auth.Dealer;
 import com.example.cardealer.entity.car.CarForSale;
 import com.example.cardealer.entity.car.CarForSaleDTO;
+import com.example.cardealer.entity.car.CarImageDTO;
+import com.example.cardealer.entity.car.CarSoldDTO;
 import com.example.cardealer.translator.FloatPriceToWordPrice;
 import org.jsoup.Jsoup;
 import org.springframework.beans.factory.annotation.Value;
@@ -24,6 +26,7 @@ import org.springframework.beans.BeanUtils;
 import org.springframework.dao.DataAccessException;
 import org.springframework.stereotype.Service;
 import org.springframework.util.StreamUtils;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.server.ResponseStatusException;
 import org.jsoup.nodes.Document;
 import java.io.*;
@@ -47,6 +50,7 @@ public class SaleCarService {
 
     private final CarForSaleDtoToCarForSale carForSaleDtoToCarForSale;
     private final CarForSaleRepository carForSaleRepository;
+    private final ImageService imageService;
 
 
     @Value("classpath:static/sale-contract.html")
@@ -90,7 +94,15 @@ public class SaleCarService {
                     carForSale.setUuid(UUID.randomUUID().toString());
                     carForSale.setCreateAt(LocalDate.now());
                     carForSale.setSeller(carForSaleDTO.getSeller());
+                    carForSale.setSold(false);
                     try {
+                        Long nextId =  carForSaleRepository.getNextId() + 1;
+                        List<String> fileList = new ArrayList<>();
+                        for(MultipartFile file : carForSaleDTO.getImageFile()) {
+                            String pathFile = imageService.saveImage(file, dealer, String.valueOf(nextId));
+                            fileList.add(pathFile);
+                        }
+                        carForSale.setImageFile(fileList);
                         carForSaleRepository.save(carForSale);
                         return ResponseEntity.ok(carForSale);
                     } catch (DataAccessException e) {
@@ -179,7 +191,27 @@ public class SaleCarService {
         return baos.toByteArray();
     }
 
+    public ResponseEntity<?> setCarSold(CarSoldDTO carSoldDTO) {
+        Optional<CarForSale> optionalCarForSale = carForSaleRepository.findByUuid(carSoldDTO.getCarUuid());
+        log.info(String.valueOf(optionalCarForSale.get().getId()));
+        if (optionalCarForSale.isPresent()) {
+            CarForSale carForSale = optionalCarForSale.get();
 
+            CarImageDTO carImageDTO = new CarImageDTO();
+            carImageDTO.setCarUuid(carSoldDTO.getCarUuid());
+            carImageDTO.setDealerUuid(carSoldDTO.getDealerUuid());
 
+            for (int i = carForSale.getImageFile().size() - 1; i >= 0; i--) {
+                carImageDTO.setPhotoNumber(i);
+                imageService.deleteImageByPhotoNumber(carImageDTO);
+            }
+
+            carForSale.setSold(true);
+            carForSaleRepository.save(carForSale);
+            return ResponseEntity.ok().build();
+        } else {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Car not found");
+        }
+    }
 }
 

@@ -3,6 +3,7 @@ package com.example.cardealer.entity.car;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import org.springframework.web.multipart.MultipartFile;
 
 @Getter
 @Setter
@@ -21,4 +22,5 @@ public class CarForSaleDTO {
     private String descHtml;
     private Integer seller;
     private float price;
+    private MultipartFile[] imageFile;
 }
